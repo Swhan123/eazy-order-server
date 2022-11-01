@@ -17,6 +17,8 @@ root.resizable(False, False) #해상도 변경 불가
 
 def setting():
     btn1.pack_forget()
+    btn2.pack()
+    textbox.pack()
     
 
 def binder(client_socket, addr):
@@ -44,9 +46,10 @@ def binder(client_socket, addr):
 
 
 def open_store():
+    btn1.pack_forget()
     # 커넥션이 되면 접속 주소가 나온다.
     messagebox.showinfo("알림", "클라이언트 응답 대기중 입니다. 클라이언트에서 이지오더 프로그램을 실행해 주세요.")
-    btn1.pack_forget()
+
     # 소켓 생성
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -70,13 +73,22 @@ def open_store():
         # 종료
         server_socket.close()
 
+def printstr():
+    btn2.pack()
 
+def writename():
+    print('여기부터')
 ##############여기부터 GUI##############
-if os.path.isfile("settings.txt") == False:
-    setting()
+
 
 btn1 = Button(root, text="개점처리", width=20, height=3, command=open_store)
 btn1.pack()
 
+str = StringVar()
+textbox = Entry(root, width=20, textvariable=str)
+btn2 = Button(root, text="매장 이름 설정하기", width=20, height=3, command=writename)
+
+if os.path.isfile("settings.txt") == False:
+    setting()
 
 root.mainloop()
