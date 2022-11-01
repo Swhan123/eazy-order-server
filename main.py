@@ -8,11 +8,8 @@ root.attributes('-fullscreen',True)
 root.resizable(False, False) #해상도 변경 불가
 
 ##############여기부터 함수##############
-
-def open_store():
+def binder(client_socket, addr):
     # 커넥션이 되면 접속 주소가 나온다.
-    messagebox.showinfo("알림", "클라이언트 응답 대기중 입니다. 클라이언트에서 이지오더 프로그램을 실행해 주세요.")
-    btn1.pack_forget()
     print('Connected by', addr)
     try:
         while True:
@@ -35,6 +32,12 @@ def open_store():
     # 종료
         client_socket.close()
 
+
+
+def open_store():
+    # 커넥션이 되면 접속 주소가 나온다.
+    messagebox.showinfo("알림", "클라이언트 응답 대기중 입니다. 클라이언트에서 이지오더 프로그램을 실행해 주세요.")
+    btn1.pack_forget()
     # 소켓 생성
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -57,6 +60,7 @@ def open_store():
     finally:
         # 종료
         server_socket.close()
+
 
 ##############여기부터 GUI##############
 btn1 = Button(root, text="개점처리", width=20, height=3, command=open_store)
