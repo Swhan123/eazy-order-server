@@ -1,13 +1,24 @@
 from tkinter import *
 from tkinter import messagebox
 import socket, threading
+import os
 
 root = Tk()
 root.title("EazyOrder Server") #창 이름 지정
 root.attributes('-fullscreen',True)
 root.resizable(False, False) #해상도 변경 불가
 
+
+
+##############여기부터 변수##############
+
+
 ##############여기부터 함수##############
+
+def setting():
+    btn1.pack_forget()
+    
+
 def binder(client_socket, addr):
     # 커넥션이 되면 접속 주소가 나온다.
     print('Connected by', addr)
@@ -17,8 +28,6 @@ def binder(client_socket, addr):
             data = client_socket.recv(1024)
             msg = data.decode()
             # 수신된 메시지를 콘솔에 출력한다.
-            print('Received from', addr, msg)
-    
             msg = "echo : " + msg
             data = msg.encode()
             length = len(data)
@@ -63,6 +72,9 @@ def open_store():
 
 
 ##############여기부터 GUI##############
+if os.path.isfile("settings.txt") == False:
+    setting()
+
 btn1 = Button(root, text="개점처리", width=20, height=3, command=open_store)
 btn1.pack()
 
