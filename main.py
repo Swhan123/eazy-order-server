@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import messagebox
 import socket
 
+
+#테스트
 root = Tk()
 root.title("EazyOrder Server") #창 이름 지정
 root.attributes('-fullscreen',True)
