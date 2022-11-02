@@ -17,8 +17,10 @@ root.resizable(False, False) #해상도 변경 불가
 
 def setting():
     btn1.pack_forget()
+    textbox.pack(padx=10, pady=10)
+    textbox.place(x=1, y=1)
     btn2.pack()
-    textbox.pack()
+    btn2.place(x=1, y=100)
     
 
 def binder(client_socket, addr):
@@ -85,7 +87,7 @@ btn1 = Button(root, text="개점처리", width=20, height=3, command=open_store)
 btn1.pack()
 
 str = StringVar()
-textbox = Entry(root, width=20, textvariable=str)
+textbox = Entry(root,  width=20, textvariable=str)
 btn2 = Button(root, text="매장 이름 설정하기", width=20, height=3, command=writename)
 
 if os.path.isfile("settings.txt") == False:
